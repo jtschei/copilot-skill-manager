@@ -1,0 +1,1 @@
+export const extensionName = 'copilot-skill-manager';
