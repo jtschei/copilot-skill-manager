@@ -1,57 +1,76 @@
 {
-  "name": "copilot-skill-manager",
-  "displayName": "copilot-skill-manager",
-  "description": "Skill manager for copilot",
-  "version": "0.0.1",
-  "engines": {
-    "vscode": "^1.136.0"
-  },
-  "categories": [
-    "Other"
-  ],
-  "activationEvents": [
-    "onStartupFinished"
-  ],
-  "main": "./dist/extension.js",
-  "contributes": {
-    "commands": [
-      {
-        "command": "copilot-skill-manager.helloWorld",
-        "title": "Hello World"
-      }
-    ]
-  },
-  "scripts": {
-    "vscode:prepublish": "pnpm run package",
-    "compile": "pnpm run check-types && pnpm run lint && node scripts/esbuild.js",
-    "watch": "npm-run-all -p watch:*",
-    "watch:esbuild": "node scripts/esbuild.js --watch",
-    "watch:tsc": "tsc --noEmit --watch --project tsconfig.json",
-    "package": "pnpm run check-types && pnpm run lint && node scripts/esbuild.js --production",
-    "compile-tests": "tsc -p . --outDir out",
-    "watch-tests": "tsc -p . -w --outDir out",
-    "pretest": "pnpm run compile-tests && pnpm run compile && pnpm run lint",
-    "check-types": "tsc --noEmit",
-    "lint": "eslint src",
-    "test": "vscode-test"
-  },
-  "devDependencies": {
-    "@types/mocha": "^10.0.10",
-    "@types/node": "24.x",
-    "@types/vscode": "^1.136.0",
-    "@vscode/test-cli": "^0.0.15",
-    "@vscode/test-electron": "^3.0.0",
-    "esbuild": "^0.28.1",
-    "eslint": "^10.5.0",
-    "npm-run-all": "^4.1.5",
-    "typescript": "^6.0.3",
-    "typescript-eslint": "^8.61.1"
-  },
-  "overrides": {
-    "diff": "^8.0.4",
-    "serialize-javascript": "^7.0.6"
-  },
-  "dependencies": {
-    "@vscode-logging/logger": "^2.0.10"
-  }
+    "name": "copilot-skill-manager",
+    "displayName": "Copilot Skill Manager",
+    "description": "Skill manager for Copilot",
+    "categories": [
+        "Other"
+    ],
+    "version": "0.0.1",
+    "author": "johns",
+    "license": "Apache-2.0",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/jtschei/copilot-skill-manager.git"
+    },
+    "type": "commonjs",
+    "main": "./dist/extension.js",
+    "files": [
+        "dist"
+    ],
+    "exports": {
+        ".": "./dist/extension.js"
+    },
+    "sideEffects": false,
+    "engines": {
+        "vscode": "^1.136.0"
+    },
+    "activationEvents": [
+        "onStartupFinished"
+    ],
+    "scripts": {
+        "check-types": "tsc -p tsconfig.src.json --noEmit",
+        "compile": "pnpm run check-types && pnpm run lint && node scripts/esbuild.js",
+        "compile-tests": "tsc -p tsconfig.test.json",
+        "format": "prettier --write .",
+        "format:check": "prettier --check .",
+        "lint": "eslint src",
+        "package": "pnpm run check-types && pnpm run lint && node scripts/esbuild.js --production",
+        "pretest": "pnpm run compile-tests && pnpm run compile && pnpm run lint",
+        "test": "vscode-test",
+        "vscode:prepublish": "pnpm run package",
+        "watch": "npm-run-all -p watch:*",
+        "watch:esbuild": "node scripts/esbuild.js --watch",
+        "watch:tsc": "tsc --noEmit --watch --project tsconfig.src.json",
+        "watch-tests": "tsc -p tsconfig.test.json --watch"
+    },
+    "dependencies": {
+        "@vscode-logging/logger": "^2.0.10"
+    },
+    "devDependencies": {
+        "@eslint/js": "^10.0.1",
+        "@types/mocha": "^10.0.10",
+        "@types/node": "24.x",
+        "@types/vscode": "^1.136.0",
+        "@vscode/test-cli": "^0.0.15",
+        "@vscode/test-electron": "^3.0.0",
+        "esbuild": "^0.28.1",
+        "eslint": "^10.5.0",
+        "eslint-plugin-package-json": "^1.8.0",
+        "npm-run-all": "^4.1.5",
+        "prettier": "^3.9.6",
+        "typescript": "^6.0.3",
+        "typescript-eslint": "^8.61.1"
+    },
+    "overrides": {
+        "diff": "^8.0.4",
+        "serialize-javascript": "^7.0.6"
+    },
+    "contributes": {
+        "commands": [
+            {
+                "command": "copilot-skill-manager.helloWorld",
+                "title": "Hello World"
+            }
+        ]
+    }
 }

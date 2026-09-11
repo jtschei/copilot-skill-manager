@@ -1,27 +1,27 @@
-import typescriptEslint from "typescript-eslint";
+import js from '@eslint/js';
+import { defineConfig } from 'eslint/config';
+import tseslint from 'typescript-eslint';
+import packageJson from 'eslint-plugin-package-json';
 
-export default [{
-    files: ["**/*.ts"],
-}, {
-    plugins: {
-        "@typescript-eslint": typescriptEslint.plugin,
+export default defineConfig(
+    {
+        files: ['package.json'],
+        extends: [packageJson.configs.recommended],
     },
-
-    languageOptions: {
-        parser: typescriptEslint.parser,
-        ecmaVersion: 2022,
-        sourceType: "module",
+    {
+        files: ['**/*.ts'],
+        languageOptions: {
+            parserOptions: {
+                project: './tsconfig.src.json',
+            },
+        },
+        extends: [
+            js.configs.recommended,
+            tseslint.configs.recommendedTypeChecked,
+            tseslint.configs.stylisticTypeChecked,
+        ],
+        rules: {
+            'lines-between-class-members': ['error', 'always'],
+        },
     },
-
-    rules: {
-        "@typescript-eslint/naming-convention": ["warn", {
-            selector: "import",
-            format: ["camelCase", "PascalCase"],
-        }],
-
-        curly: "warn",
-        eqeqeq: "warn",
-        "no-throw-literal": "warn",
-        semi: "warn",
-    },
-}];
+);
