@@ -1,23 +1,50 @@
-// Place your settings in this file to overwrite default and user settings.
 {
-    "files.exclude": {
-        "out": false, // set this to true to hide the "out" folder with the compiled JS files
-        "dist": false, // set this to true to hide the "dist" folder with the compiled JS files
-        "node_modules": true // set this to false to include "node_modules" folder in search results
+  // what to exclude in explorer
+  "files.exclude": {
+    "out": false, // set this to true to hide the "out" folder with the compiled JS files
+    "dist": false, // set this to true to hide the "dist" folder with the compiled JS files
+    "node_modules": true // set this to false to include "node_modules" folder in search results
+  },
+
+  // what to exclude in search
+  "search.exclude": {
+    "out": true,
+    "dist": true,
+    "node_modules": true // set this to false to include "node_modules" folder in search results
+  },
+
+  // disable running tsc automatically
+  // "js/ts.tsc.autoDetect": "off",
+
+  // run prettier when save
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+
+  // run eslint fix when save
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+
+  // prettier settings
+  "prettier.endOfLine": "lf",
+  "prettier.printWidth": 120,
+  "prettier.requireConfig": true,
+  "prettier.semi": false,
+  "prettier.singleQuote": true,
+
+  // approved chat tools
+  "chat.tools.terminal.autoApprove": {
+    "/^pnpm run format:check$/": {
+      "approve": true,
+      "matchCommandLine": true
     },
-    "search.exclude": {
-        "out": true, // set this to false to include "out" folder in search results
-        "dist": true, // set this to false to include "dist" folder in search results
-        "node_modules": true // set this to false to include "node_modules" folder in search results
+    "/^pnpm run lint$/": {
+      "approve": true,
+      "matchCommandLine": true
     },
-    // Turn off tsc task auto detection since we have the necessary tasks as npm scripts
-    "js/ts.tsc.autoDetect": "off",
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.formatOnSave": true,
-    "chat.tools.terminal.autoApprove": {
-        "/^pnpm run format:check$/": {
-            "approve": true,
-            "matchCommandLine": true
-        }
+    "/^pnpm run check-types$/": {
+      "approve": true,
+      "matchCommandLine": true
     }
+  }
 }

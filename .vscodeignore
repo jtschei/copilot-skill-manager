@@ -5,9 +5,11 @@ node_modules/**
 out/**
 scripts/**
 src/**
+test/**
 .gitignore
-.npmrc
+.prettierignore
+.prettierrc.json
 **/eslint.config.mjs
-**/tsconfig.json
+**/tsconfig.*.json
 **/*.map
 **/*.ts
