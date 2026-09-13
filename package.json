@@ -3,11 +3,16 @@
   "displayName": "Copilot Skill Manager",
   "description": "Skill manager for Copilot",
   "categories": [
-    "Other"
+    "AI",
+    "Chat"
+  ],
+  "keywords": [
+    "copilot",
+    "skill"
   ],
   "version": "0.0.1",
-  "author": "johns",
-  "license": "Apache-2.0",
+  "author": "jtschei",
+  "license": "SEE LICENSE IN LICENSE.txt",
   "repository": {
     "type": "git",
     "url": "https://github.com/jtschei/copilot-skill-manager.git"
@@ -18,7 +23,10 @@
     "dist"
   ],
   "exports": {
-    ".": "./dist/extension.js"
+    ".": {
+      "import": "./dist/extension.js",
+      "require": "./dist/extension.js"
+    }
   },
   "sideEffects": false,
   "engines": {
@@ -44,6 +52,7 @@
     "watch-tests": "tsc -p tsconfig.test.json --watch"
   },
   "dependencies": {
+    "@thelinuxlich/csc": "^1.0.1",
     "@vscode-logging/logger": "^2.0.10"
   },
   "devDependencies": {

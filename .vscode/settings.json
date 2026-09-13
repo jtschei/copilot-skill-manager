@@ -32,6 +32,9 @@
   "prettier.semi": false,
   "prettier.singleQuote": true,
 
+  // disable python's type checking and problem reporting (sometimes it will report errors in JS/TS files)
+  "python.analysis.typeCheckingMode": "off",
+
   // approved chat tools
   "chat.tools.terminal.autoApprove": {
     "/^pnpm run format:check$/": {
@@ -43,6 +46,14 @@
       "matchCommandLine": true
     },
     "/^pnpm run check-types$/": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "/^pnpm exec eslint src$/": {
+      "approve": true,
+      "matchCommandLine": true
+    },
+    "/^pnpm run compile$/": {
       "approve": true,
       "matchCommandLine": true
     }
