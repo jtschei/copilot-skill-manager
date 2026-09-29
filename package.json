@@ -38,6 +38,7 @@
   "scripts": {
     "check-types": "tsc -p tsconfig.src.json --noEmit",
     "compile": "pnpm run check-types && pnpm run lint && node scripts/esbuild.js",
+    "compile:production": "pnpm run check-types && pnpm run lint && node scripts/esbuild.js --production",
     "compile-tests": "tsc -p tsconfig.test.json",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
@@ -53,7 +54,8 @@
   },
   "dependencies": {
     "@thelinuxlich/csc": "^1.0.1",
-    "@vscode-logging/logger": "^2.0.10"
+    "@vscode-logging/logger": "^2.0.10",
+    "@vscode/extension-telemetry": "^1.5.2"
   },
   "devDependencies": {
     "@eslint/js": "^10.0.1",

@@ -15,20 +15,23 @@ import { callSiteCapture } from '@thelinuxlich/csc';
 export class Logger implements vscode.Disposable {
   private static logger?: Logger;
 
+  private logChannel: vscode.LogOutputChannel;
+
   private disposables: vscode.Disposable[] = [];
 
-  private constructor(private logChannel: vscode.LogOutputChannel) {
+  private constructor() {
+    this.logChannel = vscode.window.createOutputChannel(constants.extensionDisplayName, { log: true });
+    this.disposables.push(this.logChannel);
+
     this.disposables.push(
       this.logChannel.onDidChangeLogLevel((level) => {
         this.logChannel.appendLine(`Log level changed to ${vscode.LogLevel[level]}`);
       }),
     );
-    this.disposables.push(this.logChannel);
   }
 
   static getInstance(): Logger {
-    Logger.logger ??= new Logger(vscode.window.createOutputChannel(constants.extensionDisplayName, { log: true }));
-    return Logger.logger;
+    return (Logger.logger ??= new Logger());
   }
 
   /**

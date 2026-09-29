@@ -1,7 +1,21 @@
 const esbuild = require('esbuild');
+const fs = require('fs');
+const path = require('path');
 
 const production = process.argv.includes('--production');
 const watch = process.argv.includes('--watch');
+const telemetryConfigPath = path.join(
+  __dirname,
+  '..',
+  'scripts',
+  'conf',
+  production ? 'telemetry.prod.json' : 'telemetry.dev.json',
+);
+const telemetryConfig = JSON.parse(fs.readFileSync(telemetryConfigPath, 'utf8'));
+
+if (typeof telemetryConfig.telemetryKey !== 'string' || telemetryConfig.telemetryKey.length === 0) {
+  throw new Error(`Missing telemetry key in ${telemetryConfigPath}`);
+}
 
 /**
  * @type {import('esbuild').Plugin}
@@ -32,6 +46,9 @@ async function main() {
     sourcemap: !production,
     sourcesContent: false,
     platform: 'node',
+    define: {
+      TELEMETRY_KEY: JSON.stringify(telemetryConfig.telemetryKey),
+    },
     outfile: 'dist/extension.js',
     external: ['vscode'],
     logLevel: 'silent',

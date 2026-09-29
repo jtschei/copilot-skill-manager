@@ -1,4 +1,4 @@
-# copilot-skill-manager README
+# Copilot Skill Mmanager README
 
 This is the README for your extension "copilot-skill-manager". After writing up a brief description, we recommend including the following sections.
 
@@ -69,3 +69,9 @@ You can author your README using Visual Studio Code. Here are some useful editor
 - [Markdown Syntax Reference](https://help.github.com/articles/markdown-basics/)
 
 **Enjoy!**
+
+## Telemetry
+
+This extension collects telemetry data, which is used to help understand how to improve the product. For example, this usage data helps to debug issues, such as slow start-up times, and to prioritize new features. While we appreciate the insights this data provides, we also know that not everyone wants to send usage data and you can disable telemetry as described in the VS Code [disable telemetry reporting](https://code.visualstudio.com/docs/getstarted/telemetry#_disable-telemetry-reporting) documentation.
+
+Administrators can set or disable feedback and telemetry collection across their entire organization/tenant with the same mechanism. Learn more about [setting feedback and telemetry collection policy](https://code.visualstudio.com/docs/getstarted/telemetry#_disable-telemetry-reporting) and [centrally managing VS Code settings with policies](https://code.visualstudio.com/docs/enterprise/policies).
