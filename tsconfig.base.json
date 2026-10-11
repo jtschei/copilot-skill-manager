@@ -5,7 +5,6 @@
     "lib": ["ES2022"],
     "types": ["node", "mocha"],
     "sourceMap": true,
-    "rootDir": "src",
     "strict": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,

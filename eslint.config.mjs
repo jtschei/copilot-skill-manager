@@ -10,10 +10,19 @@ export default defineConfig(
     extends: [packageJson.configs.recommended],
   },
   {
-    files: ['**/*.ts'],
+    files: ['src/**/*.ts'],
     languageOptions: {
       parserOptions: {
-        project: './tsconfig.src.json',
+        project: './src/tsconfig.json',
+      },
+    },
+    extends: [js.configs.recommended, tseslint.configs.recommendedTypeChecked, prettier],
+  },
+  {
+    files: ['test/**/*.ts'],
+    languageOptions: {
+      parserOptions: {
+        project: './test/tsconfig.json',
       },
     },
     extends: [js.configs.recommended, tseslint.configs.recommendedTypeChecked, prettier],

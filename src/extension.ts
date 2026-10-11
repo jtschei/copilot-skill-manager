@@ -1,20 +1,31 @@
 import * as vscode from 'vscode';
+import * as constants from './constants';
 import { Logger } from './util/logging';
+import { Controller } from './controller';
+import { Telemetry } from './util/telemetry';
 
 const LOGGER = Logger.getInstance();
+const TELEMETRY = Telemetry.getInstance();
 
 export function activate(context: vscode.ExtensionContext) {
-  LOGGER.info('Extension activated');
+  LOGGER.debug('Extension activation started');
 
-  const disposable = vscode.commands.registerCommand('copilot-skill-manager.helloWorld', () => {
-    // The code you place here will be executed every time your command is executed
-    // Display a message box to the user
-    vscode.window.showInformationMessage('Hello World from copilot-skill-manager!');
-  });
-
-  // add disposables to the context's subscriptions so they are cleaned up when the extension is deactivated
-  context.subscriptions.push(disposable);
+  // add logger and telemetry to context subscriptions for disposal on deactivation
   context.subscriptions.push(LOGGER);
+  context.subscriptions.push(TELEMETRY);
+
+  // initialize controller to effectively start the extension
+  try {
+    const controller = Controller.getInstance(context);
+    context.subscriptions.push(controller);
+    // success
+    LOGGER.info('Extension activated');
+    TELEMETRY.sendTelemetryEvent(constants.evtExtensionActivated, { status: 'success' });
+  } catch (error: unknown) {
+    // failure
+    LOGGER.error(`Failed to initialize Controller: ${error instanceof Error ? error.message : String(error)}`);
+    TELEMETRY.sendTelemetryEvent(constants.evtExtensionActivated, { status: 'failure' });
+  }
 }
 
 export function deactivate() {

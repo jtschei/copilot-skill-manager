@@ -6,62 +6,44 @@
     {
       "type": "npm",
       "script": "compile",
-      "problemMatcher": [],
-      "group": {
-        "kind": "build",
-        "isDefault": true
+      "problemMatcher": {
+        "base": "$tsc",
+        "applyTo": "allDocuments"
       },
       "label": "npm: compile"
     },
     {
-      "label": "watch",
-      "dependsOn": ["npm: watch:tsc", "npm: watch:esbuild"],
-      "presentation": {
-        "reveal": "never"
+      "type": "npm",
+      "script": "watch",
+      "problemMatcher": {
+        "base": "$tsc-watch",
+        "background": {
+          "activeOnStart": false,
+          "beginsPattern": {
+            "regexp": "File change detected"
+          },
+          "endsPattern": {
+            "regexp": "Watching for file changes"
+          }
+        },
+        "owner": "watch",
+        "applyTo": "allDocuments",
+        "fileLocation": ["relative", "${workspaceFolder}"]
       },
-      "group": {
-        "kind": "build"
-      }
-    },
-    {
-      "type": "npm",
-      "script": "watch:esbuild",
       "group": "build",
-      "problemMatcher": "$esbuild-watch",
-      "isBackground": true,
-      "label": "npm: watch:esbuild",
-      "presentation": {
-        "group": "watch",
-        "reveal": "never"
-      }
-    },
-    {
-      "type": "npm",
-      "script": "watch:tsc",
-      "group": "build",
-      "problemMatcher": "$tsc-watch",
-      "isBackground": true,
-      "label": "npm: watch:tsc",
-      "presentation": {
-        "group": "watch",
-        "reveal": "never"
-      }
-    },
-    {
-      "type": "npm",
-      "script": "watch-tests",
-      "problemMatcher": "$tsc-watch",
-      "isBackground": true,
       "presentation": {
         "reveal": "never",
-        "group": "watchers"
+        "revealProblems": "never",
+        "focus": false,
+        "echo": true,
+        "showReuseMessage": false,
+        "panel": "dedicated",
+        "clear": false,
+        "close": false,
+        "group": "build"
       },
-      "group": "build"
-    },
-    {
-      "label": "tasks: watch-tests",
-      "dependsOn": ["npm: watch", "npm: watch-tests"],
-      "problemMatcher": []
+      "label": "npm: watch",
+      "isBackground": true
     }
   ]
 }

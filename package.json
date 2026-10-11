@@ -36,10 +36,10 @@
     "onStartupFinished"
   ],
   "scripts": {
-    "check-types": "tsc -p tsconfig.src.json --noEmit",
+    "check-types": "tsc -p src/tsconfig.json --noEmit --pretty false",
     "compile": "pnpm run check-types && pnpm run lint && node scripts/esbuild.js",
     "compile:production": "pnpm run check-types && pnpm run lint && node scripts/esbuild.js --production",
-    "compile-tests": "tsc -p tsconfig.test.json",
+    "compile-tests": "tsc -p test/tsconfig.json",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint src",
@@ -49,8 +49,8 @@
     "vscode:prepublish": "pnpm run package",
     "watch": "npm-run-all -p watch:*",
     "watch:esbuild": "node scripts/esbuild.js --watch",
-    "watch:tsc": "tsc --noEmit --watch --project tsconfig.src.json",
-    "watch-tests": "tsc -p tsconfig.test.json --watch"
+    "watch:tsc": "tsc -p src/tsconfig.json --noEmit --pretty false --watch",
+    "watch-tests": "tsc -p test/tsconfig.json --watch"
   },
   "dependencies": {
     "@thelinuxlich/csc": "^1.0.1",
@@ -83,6 +83,15 @@
         "command": "copilot-skill-manager.helloWorld",
         "title": "Hello World"
       }
-    ]
+    ],
+    "views": {
+      "explorer": [
+        {
+          "icon": "copilot",
+          "id": "skillExplorer",
+          "name": "Skill Explorer"
+        }
+      ]
+    }
   }
 }
