@@ -84,8 +84,17 @@
         "title": "Hello World"
       }
     ],
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "copilot-skill-explorer",
+          "title": "Copilot Skill Explorer",
+          "icon": "resources/gear.png"
+        }
+      ]
+    },
     "views": {
-      "explorer": [
+      "copilot-skill-explorer": [
         {
           "icon": "copilot",
           "id": "skillExplorer",
